@@ -1,4 +1,4 @@
-#Reverse Dynamic array
+#Reverse array with pointer
 #Code
 
 int* reverseArray(int a_count, int* a, int* result_count) {
@@ -117,4 +117,56 @@ int hourglassSum(int arr_rows, int arr_columns, int** arr) {
       }
   }
   return max_check;
+}
+
+#Left Rotate Array with Pointer
+int* rotateLeft(int d, int arr_count, int* arr, int* result_count) {
+    *result_count= arr_count;
+    int i, j, temp;
+    for(i=0; i<d; i++){
+        temp= *(arr+0);
+        for(j=0; j<arr_count-1; j++){
+            *(arr+j)= *(arr+j+1);
+        }
+        *(arr+arr_count-1)=temp;
+    }
+    return arr;
+}
+
+int main()
+{
+    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
+
+    char** first_multiple_input = split_string(rtrim(readline()));
+
+    int n = parse_int(*(first_multiple_input + 0));
+
+    int d = parse_int(*(first_multiple_input + 1));
+
+    char** arr_temp = split_string(rtrim(readline()));
+
+    int* arr = malloc(n * sizeof(int));
+
+    for (int i = 0; i < n; i++) {
+        int arr_item = parse_int(*(arr_temp + i));
+
+        *(arr + i) = arr_item;
+    }
+
+    int result_count;
+    int* result = rotateLeft(d, n, arr, &result_count);
+
+    for (int i = 0; i < result_count; i++) {
+        fprintf(fptr, "%d", *(result + i));
+
+        if (i != result_count - 1) {
+            fprintf(fptr, " ");
+        }
+    }
+
+    fprintf(fptr, "\n");
+
+    fclose(fptr);
+
+    return 0;
 }
