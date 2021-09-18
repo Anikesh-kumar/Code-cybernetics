@@ -1,0 +1,48 @@
+#Reverse Dynamic array
+int* reverseArray(int a_count, int* a, int* result_count) {
+   *result_count= a_count;
+   int start_index=0, temp;
+   int end_index= a_count-1;
+   while (start_index < a_count/2) {
+       temp= *(a+end_index);
+       *(a+end_index)= *(a+start_index);
+       *(a+start_index)= temp;
+       start_index++;
+       end_index--;
+   }
+   return a;
+}
+
+int main()
+{
+    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
+
+    int arr_count = parse_int(ltrim(rtrim(readline())));
+
+    char** arr_temp = split_string(rtrim(readline()));
+
+    int* arr = malloc(arr_count * sizeof(int));
+
+    for (int i = 0; i < arr_count; i++) {
+        int arr_item = parse_int(*(arr_temp + i));
+
+        *(arr + i) = arr_item;
+    }
+
+    int res_count;
+    int* res = reverseArray(arr_count, arr, &res_count);
+
+    for (int i = 0; i < res_count; i++) {
+        fprintf(fptr, "%d", *(res + i));
+
+        if (i != res_count - 1) {
+            fprintf(fptr, " ");
+        }
+    }
+
+    fprintf(fptr, "\n");
+
+    fclose(fptr);
+
+    return 0;
+}
