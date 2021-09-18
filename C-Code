@@ -101,3 +101,20 @@ int main()
     return 0;
 }
 
+#Another funtion for hourGlass with dynamic array
+
+int hourglassSum(int arr_rows, int arr_columns, int** arr) {
+  int i, j, sum_check=0, max_check= -9*7;
+  for(i=0; i<=arr_rows/2; i++){
+      for(j=0; j<=arr_columns/2; j++){
+          sum_check=0;
+          sum_check+= *(*(arr+i)+j)  + *(*(arr+i)+j+1) + *(*(arr+i)+j+2);
+          sum_check+= *(*(arr+i+1)+j+1);
+          sum_check+= *(*(arr+i+2)+j) + *(*(arr+i+2)+j+1) + *(*(arr+i+2)+j+2);
+          if(sum_check > max_check){
+              max_check=sum_check;
+          }
+      }
+  }
+  return max_check;
+}
