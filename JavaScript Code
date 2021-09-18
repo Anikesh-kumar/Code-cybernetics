@@ -1,0 +1,14 @@
+#Left Rotate an array
+
+function rotateLeft(d, arr) {
+     return [].concat(arr.slice(d), arr.slice(0,d))
+}
+
+#OR
+
+function rotateLeft(d, arr) {
+     for(var i=d; i<arr.length; i++){
+         arr.unshift(arr.pop());
+     }
+     return arr;
+}
