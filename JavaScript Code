@@ -12,3 +12,13 @@ function rotateLeft(d, arr) {
      }
      return arr;
 }
+
+#Sparse Array (Problem statement:  file: C code -> line: 175)
+
+function matchingStrings(strings, queries) {
+   let match=[];
+   for(var i=0; i<queries.length; i++){
+    match.push(strings.filter(x => x === queries[i]).length);
+   }
+    return match;
+}
