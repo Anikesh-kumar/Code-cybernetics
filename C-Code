@@ -170,3 +170,24 @@ int main()
 
     return 0;
 }
+
+#Sparse Array with pointer
+#Problem/Statement:  https://nimb.ws/5Xptkf
+#Sample I/O:  https://nimb.ws/M7qNH2
+
+int* matchingStrings(int strings_count, char** strings, int queries_count, char** queries, int* result_count) {
+    * result_count= queries_count;
+    int i, j, temp=0, res;
+    int* match = malloc(queries_count * sizeof(int*));
+    for(i=0; i<queries_count; i++){ 
+        for(j=0; j<strings_count; j++){
+             res = strcmp(*(strings+j) ,  *(queries+i));
+            if(res ==0){
+                temp++;
+            }
+        }
+        *(match+i)=temp;
+         temp=0;
+    }
+return match;
+}
