@@ -191,3 +191,25 @@ int* matchingStrings(int strings_count, char** strings, int queries_count, char*
     }
 return match;
 }
+
+#2-D Array Manipulation
+#Problem Statement: https://nimb.ws/xHq7gu
+
+long arrayManipulation(int n, int queries_rows, int queries_columns, int** queries) {
+        int op_matrix[queries_rows+1][n];
+        int i, j, s,t;
+        s=queries_rows+1;
+        t=n;
+        // memset(op_matrix, 0, sizeof op_matrix);
+        memset(op_matrix, 0, s*t*sizeof op_matrix[0][0]);
+        int max=0;
+        for(int row=0; row < queries_rows; row++){
+            for(int col= *(*(queries + row)+0); col <= *(*(queries + row) +1); col++){
+            op_matrix[row+1][col-1]= *(*(queries + row) + 2) + op_matrix[row][col-1]; 
+                if(max < *(*(queries + row) + 2) + op_matrix[row][col-1] ){
+                    max=  *(*(queries + row) + 2) + op_matrix[row][col-1]; 
+                }
+            }
+        }
+        return max;
+}
